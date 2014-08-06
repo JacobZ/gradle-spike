@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 15
+    buildToolsVersion '20.0.0'
+
+    defaultConfig {
+        applicationId 'com.example.artcom.test'
+        minSdkVersion 14
+        targetSdkVersion 15
+        versionCode 1
+        versionName '1.0'
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        julianTest {
+            minSdkVersion 14
+            applicationId 'com.example.julian.test'
+            targetSdkVersion 15
+            versionCode 1
+            versionName '1.0'
+        }
+        jacobTest {
+            minSdkVersion 14
+            applicationId 'com.example.jacob.test'
+            targetSdkVersion 15
+            versionCode 1
+            versionName '1.0'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
