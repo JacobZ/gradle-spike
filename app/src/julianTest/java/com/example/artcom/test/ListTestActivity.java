@@ -46,6 +46,7 @@ public class ListTestActivity extends Activity {
         mAdapter = new MainAdapter(this, strings, metrics);
         ((MainAdapter) mAdapter).setMode(1);
         listview.setAdapter(mAdapter);
+
     }
 
 
