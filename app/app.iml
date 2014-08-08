@@ -8,54 +8,54 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="julianTestDebug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleJulianTestDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileJulianTestDebugJava" />
-        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleJulianTestDebugTest" />
-        <option name="SOURCE_GEN_TASK_NAME" value="generateJulianTestDebugSources" />
+        <option name="SELECTED_BUILD_VARIANT" value="jacobTestDebug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleJacobTestDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileJacobTestDebugJava" />
+        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleJacobTestDebugTest" />
+        <option name="SOURCE_GEN_TASK_NAME" value="generateJacobTestDebugSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/julianTest/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/intermediates/classes/julianTest/debug" />
+    <output url="file://$MODULE_DIR$/build/intermediates/classes/jacobTest/debug" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/julianTest/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/julianTest/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/julianTest/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/julianTest/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/julianTest/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTestDebug/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTestDebug/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTestDebug/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTestDebug/assets" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTestDebug/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTestDebug/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTestDebug/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/test/julianTest/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/test/julianTest/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/test/julianTest/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/test/julianTest/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/test/julianTest/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTest/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTest/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTest/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTest/assets" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTest/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTest/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/julianTest/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJulianTest/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJulianTest/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJulianTest/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJulianTest/assets" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJulianTest/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJulianTest/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJulianTest/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/jacobTest/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/jacobTest/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/jacobTest/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/jacobTest/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/jacobTest/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTestDebug/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTestDebug/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTestDebug/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTestDebug/assets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTestDebug/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTestDebug/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTestDebug/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/test/jacobTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/test/jacobTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/test/jacobTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/test/jacobTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/test/jacobTest/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTest/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTest/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTest/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTest/assets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTest/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTest/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jacobTest/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJacobTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJacobTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJacobTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJacobTest/assets" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJacobTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJacobTest/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJacobTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/aidl" isTestSource="false" />
