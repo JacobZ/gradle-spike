@@ -5,17 +5,15 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ListTestActivity extends Activity {
 
     private DisplayMetrics metrics;
     private ListView listview;
-    private BaseAdapter mAdapter;
+    private MainAdapter mAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,16 +22,10 @@ public class ListTestActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         listview = new ListView(this);
-        listview.setFadingEdgeLength(0);
+        listview.setFadingEdgeLength(13);
 
         initSimpleListView();
-//        initImageListView();
         setContentView(listview);
-     }
-
-    private void initImageListView() {
-        mAdapter = new ImageAdapter(Arrays.asList(Constants.images), this);
-        listview.setAdapter(mAdapter);
     }
 
     private void initSimpleListView() {
@@ -44,12 +36,10 @@ public class ListTestActivity extends Activity {
         }
 
         mAdapter = new MainAdapter(this, strings, metrics);
-        ((MainAdapter) mAdapter).setMode(1);
+        mAdapter.setMode(1);
         listview.setAdapter(mAdapter);
 
     }
-
-
 
     public boolean onCreateOptionsMenu(Menu menu) {
         boolean result = super.onCreateOptionsMenu(menu);
@@ -65,16 +55,13 @@ public class ListTestActivity extends Activity {
         menu.add(Menu.NONE, 10, 0, "push_up_in");
         menu.add(Menu.NONE, 11, 0, "push_up_out");
         menu.add(Menu.NONE, 12, 0, "shake");
+        menu.add(Menu.NONE, 13, 0, "rotate");
         return result;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        try {
-            ((MainAdapter) mAdapter).setMode(1);
-        } catch (ClassCastException e) {
-
-        }
+        mAdapter.setMode(item.getItemId());
         return super.onOptionsItemSelected(item);
     }
 

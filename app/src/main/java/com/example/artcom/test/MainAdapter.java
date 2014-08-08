@@ -21,10 +21,6 @@ public class MainAdapter extends ArrayAdapter<String> {
     private DisplayMetrics metrics_;
     private int mode;
 
-    private class Holder {
-        public TextView textview;
-    }
-
     public MainAdapter(Context context, ArrayList<String> strings,
                        DisplayMetrics metrics) {
         super(context, 0, strings);
@@ -65,16 +61,19 @@ public class MainAdapter extends ArrayAdapter<String> {
             case 1:
                 animation = new TranslateAnimation(metrics_.widthPixels / 2, 0,
                         0, 0);
+                animation.setDuration(500);
                 break;
 
             case 2:
                 animation = new TranslateAnimation(0, 0, metrics_.heightPixels,
                         0);
+                animation.setDuration(500);
                 break;
 
             case 3:
                 animation = new ScaleAnimation((float) 1.0, (float) 1.0,
                         (float) 0, (float) 1.0);
+                animation.setDuration(500);
                 break;
 
             case 4:
@@ -104,9 +103,10 @@ public class MainAdapter extends ArrayAdapter<String> {
             case 12:
                 animation = AnimationUtils.loadAnimation(context, R.anim.shake);
                 break;
+            case 13:
+                animation = AnimationUtils.loadAnimation(context, R.anim.rotate);
         }
 
-        animation.setDuration(500);
         convertView.startAnimation(animation);
         animation = null;
 
@@ -115,5 +115,9 @@ public class MainAdapter extends ArrayAdapter<String> {
 
     public void setMode(int mode) {
         this.mode = mode;
+    }
+
+    private class Holder {
+        public TextView textview;
     }
 }
