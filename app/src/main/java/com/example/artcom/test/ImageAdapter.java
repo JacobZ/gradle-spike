@@ -28,6 +28,44 @@ public class ImageAdapter extends BaseAdapter {
 
     private class ViewHolder {
         ImageView displayImage;
+        AsyncTask imageLoaderTask;
+        Animation animation;
+        int followUpAnimation;
+
+        public void runAnimation(int animationResource) {
+            if(animation != null) {
+                followUpAnimation = animationResource;
+                return;
+            }
+
+            if(animationResource == followUpAnimation) {
+                followUpAnimation = -1;
+            }
+
+            Animation animation = AnimationUtils.loadAnimation(mContext, animationResource);
+            animation.setDuration(500);
+            animation.setFillAfter(true);
+            animation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    animation = null;
+                    if(followUpAnimation != -1) {
+                        runAnimation(followUpAnimation);
+                    }
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+            animation = animation;
+            displayImage.startAnimation(animation);
+        }
+
     }
 
     private List<String> mImageUris;
@@ -70,8 +108,13 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.displayImage.setImageBitmap(null);
-        new ImageLoadTask(viewHolder).execute(mImageUris.get(i));
+
+        viewHolder.runAnimation(R.anim.push_left_out);
+
+        if(viewHolder.imageLoaderTask != null) {
+            viewHolder.imageLoaderTask.cancel(true);
+        }
+        viewHolder.imageLoaderTask = new ImageLoadTask(viewHolder).execute(mImageUris.get(i));
 
         return convertView;
     }
@@ -97,17 +140,18 @@ public class ImageAdapter extends BaseAdapter {
         @Override
         protected Bitmap doInBackground(String... strings) {
             String imageUrl = strings[0];
-            Bitmap bitmap = getBitmapFromMemCache(imageUrl);
-            if(bitmap != null) {
-                return bitmap;
-            }
+            Bitmap bitmap;
+//            Bitmap bitmap = getBitmapFromMemCache(imageUrl);
+//            if(bitmap != null) {
+//                return bitmap;
+//            }
             try {
                 URL url = new URL(imageUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
                 bitmap = BitmapFactory.decodeStream(connection.getInputStream());
-                addBitmapToMemoryCache(imageUrl, bitmap);
+//                addBitmapToMemoryCache(imageUrl, bitmap);
                 return bitmap;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -127,10 +171,9 @@ public class ImageAdapter extends BaseAdapter {
                 return;
             }
             mViewHolder.displayImage.setImageBitmap(bitmap);
-            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-            animation.setDuration(500);
-//            mViewHolder.displayImage.startAnimation(animation);
-            animation = null;
+            mViewHolder.imageLoaderTask = null;
+            mViewHolder.runAnimation(R.anim.push_left_in);
+
         }
     }
 }
