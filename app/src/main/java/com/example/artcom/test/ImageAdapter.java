@@ -30,11 +30,12 @@ public class ImageAdapter extends BaseAdapter {
         ImageView displayImage;
         AsyncTask imageLoaderTask;
         Animation animation;
-        int followUpAnimation;
+        int followUpAnimation = -1;
 
         public void runAnimation(int animationResource) {
             if(animation != null) {
                 followUpAnimation = animationResource;
+//                animation.cancel();
                 return;
             }
 
@@ -52,10 +53,11 @@ public class ImageAdapter extends BaseAdapter {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    animation = null;
                     if(followUpAnimation != -1) {
                         runAnimation(followUpAnimation);
                     }
+                    animation = null;
+                    displayImage.setHasTransientState(false);
                 }
 
                 @Override
@@ -63,6 +65,7 @@ public class ImageAdapter extends BaseAdapter {
                 }
             });
             animation = animation;
+            displayImage.setHasTransientState(true);
             displayImage.startAnimation(animation);
         }
 
