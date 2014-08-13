@@ -3,19 +3,26 @@ package com.example.artcom.test;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.BaseAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.example.artcom.test.adapter.ImageAdapter;
+import com.example.artcom.test.adapter.ListViewHandler;
 
-public class ListTestActivity extends Activity {
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ListTestActivity extends Activity implements AdapterView.OnItemClickListener {
+
+    private static final int SWIPE_DURATION = 250;
+    private static final int MOVE_DURATION = 150;
 
     private DisplayMetrics metrics;
-    private ListView listview;
-    private BaseAdapter mAdapter;
+    private ListView mListView;
+    private ImageAdapter mAdapter;
+    private ListViewHandler<String> mListViewHandler;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,58 +30,27 @@ public class ListTestActivity extends Activity {
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        listview = new ListView(this);
-        listview.setFadingEdgeLength(0);
+        mListView = new ListView(this);
+        mListView.setFadingEdgeLength(0);
+        mListView.setOnItemClickListener(this);
 
-//        initSimpleListView();
         initImageListView();
-        setContentView(listview);
+        setContentView(mListView);
+        mListViewHandler = new ListViewHandler<String>(mListView, mAdapter);
      }
 
     private void initImageListView() {
-        mAdapter = new ImageAdapter(Arrays.asList(Constants.images), this);
-        listview.setAdapter(mAdapter);
+        List<String> imageUris = new LinkedList<String>(Arrays.asList(Constants.images));
+
+        mAdapter = new ImageAdapter(imageUris, this);
+        mListView.setAdapter(mAdapter);
     }
 
-    private void initSimpleListView() {
-        ArrayList<String> strings = new ArrayList<String>();
-
-        for (int i = 0; i < 300; i++) {
-            strings.add("Item:#" + (i + 1));
-        }
-
-        mAdapter = new MainAdapter(this, strings, metrics);
-        ((MainAdapter) mAdapter).setMode(1);
-        listview.setAdapter(mAdapter);
-    }
-
-
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        boolean result = super.onCreateOptionsMenu(menu);
-        menu.add(Menu.NONE, 1, 0, "TranslateAnimation1");
-        menu.add(Menu.NONE, 2, 0, "TranslateAnimation2");
-        menu.add(Menu.NONE, 3, 0, "ScaleAnimation");
-        menu.add(Menu.NONE, 4, 0, "fade_in");
-        menu.add(Menu.NONE, 5, 0, "hyper_space_in");
-        menu.add(Menu.NONE, 6, 0, "hyper_space_out");
-        menu.add(Menu.NONE, 7, 0, "wave_scale");
-        menu.add(Menu.NONE, 8, 0, "push_left_in");
-        menu.add(Menu.NONE, 9, 0, "push_left_out");
-        menu.add(Menu.NONE, 10, 0, "push_up_in");
-        menu.add(Menu.NONE, 11, 0, "push_up_out");
-        menu.add(Menu.NONE, 12, 0, "shake");
-        return result;
-    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        try {
-            ((MainAdapter) mAdapter).setMode(1);
-        } catch (ClassCastException e) {
-
-        }
-        return super.onOptionsItemSelected(item);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String item = (String) parent.getItemAtPosition(position);
+        mListViewHandler.removeItem(view, item);
+//        mAdapter.notifyDataSetChanged();
     }
-
 }

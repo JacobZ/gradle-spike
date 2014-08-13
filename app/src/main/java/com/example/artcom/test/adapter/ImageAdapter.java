@@ -1,4 +1,4 @@
-package com.example.artcom.test;
+package com.example.artcom.test.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,18 +13,24 @@ import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.example.artcom.test.R;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
-public class ImageAdapter extends BaseAdapter {
+public class ImageAdapter extends BaseAdapter implements ModifiableAdapter<String> {
 
     private final Context mContext;
     private final LayoutInflater mInflater;
     private int mCacheSize = (int) ((Runtime.getRuntime().maxMemory() / 1024) / 8);
     private LruCache<String, Bitmap> mCache;
+    private HashMap<String, Integer> mIdMap;
+    private List<String> mImageUris;
+
 
     private class ViewHolder {
         ImageView displayImage;
@@ -71,12 +77,15 @@ public class ImageAdapter extends BaseAdapter {
 
     }
 
-    private List<String> mImageUris;
-
     public ImageAdapter(List<String> imageUris, Context context) {
         mImageUris = imageUris;
         mContext = context;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mIdMap = new HashMap<String, Integer>();
+        int length = mImageUris.size();
+        for (int i = 0; i < length; i++) {
+            mIdMap.put(mImageUris.get(i), i);
+        }
         mCache = new LruCache<String, Bitmap>(mCacheSize) {
             @Override
             protected int sizeOf(String key, Bitmap value) {
@@ -91,13 +100,18 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public String getItem(int i) {
         return mImageUris.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return mIdMap.get(getItem(i));
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
     }
 
     @Override
@@ -112,7 +126,7 @@ public class ImageAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.runAnimation(R.anim.push_left_out);
+//        viewHolder.runAnimation(R.anim.push_left_out);
 
         if(viewHolder.imageLoaderTask != null) {
             viewHolder.imageLoaderTask.cancel(true);
@@ -120,6 +134,24 @@ public class ImageAdapter extends BaseAdapter {
         viewHolder.imageLoaderTask = new ImageLoadTask(viewHolder).execute(mImageUris.get(i));
 
         return convertView;
+    }
+
+    @Override
+    public void remove(String item) {
+        mImageUris.remove(item);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void add(String item) {
+        mImageUris.add(item);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void addAtIndex(String item, int index) {
+        mImageUris.add(index, item);
+        notifyDataSetChanged();
     }
 
     public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
@@ -143,18 +175,18 @@ public class ImageAdapter extends BaseAdapter {
         @Override
         protected Bitmap doInBackground(String... strings) {
             String imageUrl = strings[0];
-            Bitmap bitmap;
-//            Bitmap bitmap = getBitmapFromMemCache(imageUrl);
-//            if(bitmap != null) {
-//                return bitmap;
-//            }
+//            Bitmap bitmap;
+            Bitmap bitmap = getBitmapFromMemCache(imageUrl);
+            if(bitmap != null) {
+                return bitmap;
+            }
             try {
                 URL url = new URL(imageUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
                 bitmap = BitmapFactory.decodeStream(connection.getInputStream());
-//                addBitmapToMemoryCache(imageUrl, bitmap);
+                addBitmapToMemoryCache(imageUrl, bitmap);
                 return bitmap;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -175,7 +207,7 @@ public class ImageAdapter extends BaseAdapter {
             }
             mViewHolder.displayImage.setImageBitmap(bitmap);
             mViewHolder.imageLoaderTask = null;
-            mViewHolder.runAnimation(R.anim.push_left_in);
+//            mViewHolder.runAnimation(R.anim.push_left_in);
 
         }
     }

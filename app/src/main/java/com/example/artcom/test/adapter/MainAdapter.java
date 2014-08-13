@@ -1,4 +1,4 @@
-package com.example.artcom.test;
+package com.example.artcom.test.adapter;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
@@ -11,6 +11,8 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.artcom.test.R;
 
 import java.util.ArrayList;
 

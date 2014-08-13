@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.example.artcom.test.adapter.MainAdapter;
+
 import java.util.ArrayList;
 
 public class ListTestActivity extends Activity {
